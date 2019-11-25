@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 /// Defines the memory size.
 const int MEMORY_SIZE = 20;
@@ -26,7 +26,7 @@ class Opcode {
 /// Entry point.
 void main() {
   // Program memory.
-  final memory = List<int>(MEMORY_SIZE);
+  final memory = Int32List(MEMORY_SIZE);
   // Program code to execute.
   const code = const [
     Opcode(OpcodeKind.loadi, 0, 1000000000), // r0 = 1000000000;
@@ -55,7 +55,7 @@ void main() {
         }
       case OpcodeKind.compare:
         {
-          memory[op.op1] = (memory[op.op2] == memory[op.op3]) == true ? 1 : 0;
+          memory[op.op1] = (memory[op.op2] == memory[op.op3]) ? 1 : 0;
           break;
         }
       case OpcodeKind.jump:
